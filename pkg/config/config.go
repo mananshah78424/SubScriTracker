@@ -1,7 +1,8 @@
 package config
 
 type Config struct {
-	Database *Database
+	Database   *Database
+	ServerPort int
 }
 
 type Database struct {
@@ -24,7 +25,8 @@ func New() *Config {
 	}
 
 	cfg := &Config{
-		Database: databaseCfg,
+		Database:   databaseCfg,
+		ServerPort: 4321,
 	}
 
 	// switch strings.ToLower(os.Getenv("ENV")) {

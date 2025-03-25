@@ -2,6 +2,7 @@ package application
 
 import (
 	"context"
+	"subscription_tracker/pkg/config"
 	"subscription_tracker/pkg/utils"
 
 	"github.com/pkg/errors"
@@ -10,6 +11,7 @@ import (
 
 type App struct {
 	Database *bun.DB
+	Config   *config.Config
 }
 
 // New initializes a new application
@@ -20,7 +22,9 @@ func New(ctx context.Context, db *bun.DB) (*App, error) {
 		return nil, errors.Wrap(err, errMsg)
 	}
 
-	return &App{
+	app := &App{
 		Database: db,
-	}, nil
+	}
+
+	return app, nil
 }
