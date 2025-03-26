@@ -18,12 +18,12 @@ func CreateEcho() *echo.Echo {
 	return e
 }
 
-func New(app *application.App) *http.Server {
+func New(app *application.App) (*http.Server, error) {
 	e := CreateEcho()
 	err := RegisterRoutes(app, e)
 	if err != nil {
 		fmt.Println("Error registering routes")
-		return nil
+		return nil, err
 	}
 	addr := fmt.Sprintf(":%d", app.Config.ServerPort)
 	addr = "localhost" + addr
@@ -35,12 +35,12 @@ func New(app *application.App) *http.Server {
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
-
-	return s
+	fmt.Println("Server created on port", app.Config.ServerPort)
+	return s, nil
 
 }
 
-func RegisterRoutes(app *application.App, e *echo.Echo) any {
+func RegisterRoutes(app *application.App, e *echo.Echo) error {
 	netflix.RegisterRoutes(e, app)
 	return nil
 }

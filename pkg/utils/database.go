@@ -12,7 +12,7 @@ import (
 	"github.com/uptrace/bun/driver/pgdriver"
 )
 
-func NewDatabase(*bun.DB) (*bun.DB, error) {
+func NewDatabase() (*bun.DB, error) {
 	cfg := config.New()
 	databaseCfg := cfg.Database
 	maxOpenConns := 4 * runtime.GOMAXPROCS(0)
