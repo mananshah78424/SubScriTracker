@@ -10,12 +10,17 @@ require (
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	go.opentelemetry.io/otel v1.34.0 // indirect
 	go.opentelemetry.io/otel/trace v1.34.0 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
 	mellium.im/sasl v0.3.2 // indirect
 )
 
 require (
+	github.com/golang-migrate/migrate/v4 v4.18.2
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/labstack/echo/v4 v4.13.3 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect

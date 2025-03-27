@@ -2,6 +2,7 @@ package application
 
 import (
 	"context"
+	"fmt"
 	"subscription_tracker/pkg/config"
 	"subscription_tracker/pkg/utils"
 
@@ -21,6 +22,7 @@ func New(ctx context.Context) (*App, error) {
 		errMsg := "could not set up the database"
 		return nil, errors.Wrap(err, errMsg)
 	}
+	fmt.Print("Database connected\n")
 
 	app := &App{
 		Database: db,
