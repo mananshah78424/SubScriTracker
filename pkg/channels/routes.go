@@ -1,4 +1,4 @@
-package netflix
+package channels
 
 import (
 	"subscription_tracker/pkg/application"
@@ -16,4 +16,5 @@ func RegisterRoutes(e *echo.Echo, app *application.App) {
 	}
 	group := e.Group("/api/v1")
 	group.GET("/movies", h.GetMovies)
+	group.POST("/channel", h.CreateChannel)
 }

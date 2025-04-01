@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"subscription_tracker/pkg/application"
-	"subscription_tracker/pkg/netflix"
+	"subscription_tracker/pkg/channels"
 	"time"
 
 	"github.com/labstack/echo"
@@ -41,6 +41,6 @@ func New(app *application.App) (*http.Server, error) {
 }
 
 func RegisterRoutes(app *application.App, e *echo.Echo) error {
-	netflix.RegisterRoutes(e, app)
+	channels.RegisterRoutes(e, app)
 	return nil
 }
