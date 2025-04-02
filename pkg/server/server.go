@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"subscription_tracker/pkg/application"
 	"subscription_tracker/pkg/channels"
+	"subscription_tracker/users"
 	"time"
 
 	"github.com/labstack/echo"
@@ -20,6 +21,7 @@ func CreateEcho() *echo.Echo {
 
 func New(app *application.App) (*http.Server, error) {
 	e := CreateEcho()
+	// Register routes with the echo instance and the application
 	err := RegisterRoutes(app, e)
 	if err != nil {
 		fmt.Println("Error registering routes")
@@ -42,5 +44,6 @@ func New(app *application.App) (*http.Server, error) {
 
 func RegisterRoutes(app *application.App, e *echo.Echo) error {
 	channels.RegisterRoutes(e, app)
+	users.RegisterRoutes(e, app)
 	return nil
 }

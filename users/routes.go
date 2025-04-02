@@ -1,4 +1,4 @@
-package channels
+package users
 
 import (
 	"subscription_tracker/pkg/application"
@@ -16,6 +16,6 @@ func RegisterRoutes(e *echo.Echo, app *application.App) {
 		app: app,
 	}
 	group := e.Group("/api/v1")
-	group.GET("/movies", h.GetMovies)
-	group.POST("/channel", h.CreateChannel)
+	group.GET("/users", h.GetUsers)
+	group.POST("/user", h.CreateUser)
 }

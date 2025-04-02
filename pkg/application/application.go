@@ -17,6 +17,7 @@ type App struct {
 
 // New initializes a new application
 func New(ctx context.Context) (*App, error) {
+	// Set up the database
 	db, err := utils.NewDatabase()
 	if err != nil {
 		errMsg := "could not set up the database"
@@ -24,6 +25,7 @@ func New(ctx context.Context) (*App, error) {
 	}
 	fmt.Print("Database connected\n")
 
+	// Application is made up of the database and the configuration
 	app := &App{
 		Database: db,
 		Config:   config.New(),

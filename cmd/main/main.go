@@ -9,12 +9,14 @@ import (
 
 func main() {
 	ctx := context.Background()
+	// Create a new application
 	app, err := application.New(ctx)
 	if err != nil {
 		fmt.Println("Error creating application")
 		return
 	}
 
+	// Create a new server
 	srv, err := server.New(app)
 	if err != nil {
 		fmt.Println("Error creating server")
