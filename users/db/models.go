@@ -3,7 +3,9 @@ package db
 import (
 	"context"
 	"subscription_tracker/pkg/application"
+	"time"
 
+	"github.com/google/uuid"
 	"github.com/uptrace/bun"
 )
 
@@ -13,6 +15,11 @@ type UsersModel interface {
 }
 
 func (u *Users) CreateUser(ctx context.Context, app *application.App, users Users) (*Users, error) {
+	// Generate a UUID for the user
+	users.ID = uuid.New().String()
+	users.CreatedAt = time.Now()
+	users.UpdatedAt = time.Now()
+
 	_, err := app.Database.NewInsert().Model(&users).Exec(ctx)
 	if err != nil {
 		return nil, err
@@ -31,8 +38,10 @@ func (u *Users) GetAllUsers(ctx context.Context, app *application.App) ([]Users,
 
 type Users struct {
 	bun.BaseModel `bun:"users,alias:sc"`
-	ID            string
-	Name          string
-	Email         string
-	Password      string
+	ID            string    `bun:"id,pk"`
+	Name          string    `bun:"name"`
+	Email         string    `bun:"email"`
+	Password      string    `bun:"password"`
+	CreatedAt     time.Time `bun:"created_at"`
+	UpdatedAt     time.Time `bun:"updated_at"`
 }

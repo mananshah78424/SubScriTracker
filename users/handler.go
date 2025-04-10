@@ -8,8 +8,17 @@ import (
 )
 
 func (h *Handler) CreateUser(c echo.Context) error {
-	fmt.Println("Creating a new user")
-	return c.JSON(200, "user")
+	userData, err := validateCreateUserData(c)
+	if err != nil {
+		return c.JSON(400, map[string]string{"error": err.Error()})
+	}
+	usersModel := &db.Users{}
+	newUser, err := usersModel.CreateUser(c.Request().Context(), h.app, userData)
+	if err != nil {
+		return c.JSON(500, err)
+	}
+
+	return c.JSON(200, newUser)
 }
 
 // this function gets all users
